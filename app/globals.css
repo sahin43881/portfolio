@@ -6,21 +6,21 @@
 }
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 html {
   scroll-behavior: smooth;
-  background-color: #000000;
-  overflow-x: hidden;
+  background-color: #ffffff;
+  overflow-x: clip;
 }
 
 body {
-  background-color: #000000;
-  color: #e2e8f0;
+  background-color: #ffffff;
+  color: #1f2937;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 h1,
@@ -37,11 +37,11 @@ h4 {
 }
 
 ::-webkit-scrollbar-track {
-  background: #000000;
+  background: #f9fafb;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1a1a1a;
+  background: #e2e8f0;
   border-radius: 8px;
 }
 
@@ -50,5 +50,15 @@ h4 {
 }
 
 * {
-  scrollbar-color: #1a1a1a #000000;
+  scrollbar-color: #e2e8f0 #f9fafb;
+}
+
+/* Seamless page scroll — hide any inner scrollbar on the skills panel */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }

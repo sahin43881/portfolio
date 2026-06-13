@@ -17,14 +17,14 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Shahin Ahmed — Senior Frontend Developer",
+  title: "Shahin Ahmed — Full-Stack Developer",
   description:
-    "Senior Frontend Developer from Bangladesh with 3+ years of experience building scalable web applications with React, Next.js, and Tailwind CSS.",
+    "Full-Stack Developer from Bangladesh with 3+ years of experience building end-to-end, scalable, and secure web applications with React, Next.js, Node.js, and modern databases.",
 };
 
 export const viewport: Viewport = {
-  themeColor: "#000000",
-  colorScheme: "dark",
+  themeColor: "#ffffff",
+  colorScheme: "light",
 };
 
 export default function RootLayout({
@@ -33,10 +33,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${syne.variable} ${inter.variable} h-full antialiased dark`}
-      style={{ colorScheme: "dark" }}
+      className={`${syne.variable} ${inter.variable} h-full antialiased`}
+      style={{ colorScheme: "light" }}
     >
-      <body className="min-h-full flex flex-col bg-black text-slate-200">
+      <body className="min-h-full flex flex-col bg-white text-slate-700">
         <Providers>{children}</Providers>
       </body>
     </html>
