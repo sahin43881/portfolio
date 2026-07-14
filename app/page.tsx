@@ -1,6 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState, type ReactNode } from "react";
+
+import aboutPortrait from "@/public/615940895_122151814346889569_5411851280753949891_n.jpg";
 
 /* ------------------------------------------------------------------ *
  * Content — kept as-is, only re-homed into the editorial layout.
@@ -409,12 +412,24 @@ function About() {
         <GiantHeading>A bit about me.</GiantHeading>
 
         <div className="mt-16 grid grid-cols-1 gap-10 md:grid-cols-12">
-          <p className="text-base leading-relaxed text-muted-ink md:col-span-4 md:col-start-5">
+          <div className="md:col-span-4 md:col-start-1 md:row-span-2 md:row-start-1">
+            <div className="group relative aspect-4/5 w-full overflow-hidden">
+              <Image
+                src={aboutPortrait}
+                alt="Portrait of Shahin Ahmed"
+                fill
+                sizes="(max-width: 768px) 100vw, 33vw"
+                placeholder="blur"
+                className="object-cover object-center opacity-60 grayscale mix-blend-multiply transition-all duration-700 ease-out group-hover:opacity-90 group-hover:grayscale-0"
+              />
+            </div>
+          </div>
+          <p className="text-base leading-relaxed text-muted-ink md:col-span-4 md:col-start-5 md:row-start-1 md:mt-16">
             My journey began at age 12 in a remote Bangladeshi village, on a
             shared school computer and a slow café connection. What started as
             curiosity became a craft — 3+ years of shipping products end-to-end.
           </p>
-          <p className="text-base leading-relaxed text-muted-ink md:col-span-4 md:col-start-9">
+          <p className="text-base leading-relaxed text-muted-ink md:col-span-4 md:col-start-9 md:row-start-2 md:self-start">
             As a Full-Stack Developer, I bridge the gap between pixel-perfect
             interfaces and powerful backend systems — designing data models,
             building secure APIs, and shipping products that are scalable,
