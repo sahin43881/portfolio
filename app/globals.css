@@ -1,8 +1,42 @@
 @import "tailwindcss";
 
+/* ------------------------------------------------------------------ *
+ * Editorial Brutalist — semantic design tokens only.
+ * Colors, fonts, and the single hairline are defined here and exposed
+ * as utilities. Components never hardcode a color value.
+ * ------------------------------------------------------------------ */
 @theme {
-  --font-display: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  /* Surfaces & ink — warm off-white paper, near-black ink. */
+  --color-paper: oklch(0.985 0 0);
+  --color-paper-soft: oklch(0.965 0 0);
+  --color-ink: oklch(0.08 0 0);
+  --color-muted-ink: oklch(0.45 0 0);
+  --color-hairline: oklch(0.87 0 0);
+
+  /* Type: Anton for huge condensed display, Inter for body. */
+  --font-display: var(--font-anton), "Arial Narrow", ui-sans-serif, sans-serif;
+  --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* Brutalist: no soft corners anywhere. */
+  --radius: 0px;
+}
+
+/* Semantic utilities (spec: bg-paper, text-ink, hairline, font-display …).
+   Tailwind auto-generates bg-paper / text-ink / border-hairline / font-display
+   from the --color-* / --font-* tokens above. The extras below are the
+   composite helpers the layout leans on. */
+@utility hairline {
+  /* A 1px light-gray rule — used as a standalone divider element. */
+  height: 1px;
+  width: 100%;
+  background-color: var(--color-hairline);
+}
+
+@utility side-label {
+  /* Rotated vertical edge labels. */
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  letter-spacing: 0.35em;
 }
 
 :root {
@@ -11,54 +45,52 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: #ffffff;
+  background-color: var(--color-paper);
   overflow-x: clip;
 }
 
 body {
-  background-color: #ffffff;
-  color: #1f2937;
-  font-family: var(--font-sans);
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
   overflow-x: clip;
 }
 
-h1,
-h2,
-h3,
-h4 {
-  font-family: var(--font-display);
-  letter-spacing: -0.02em;
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f9fafb;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #e2e8f0;
-  border-radius: 8px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #7c3aed;
-}
-
+/* Kill inherited rounded corners / gradients / shadows globally. */
 * {
-  scrollbar-color: #e2e8f0 #f9fafb;
+  border-radius: 0;
 }
 
-/* Seamless page scroll — hide any inner scrollbar on the skills panel */
-.scrollbar-none {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+/* ------------------------------------------------------------------ *
+ * CSS-only infinite marquee.
+ * ------------------------------------------------------------------ */
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    /* Track holds two identical copies; shift by exactly one. */
+    transform: translate3d(-50%, 0, 0);
+  }
 }
 
-.scrollbar-none::-webkit-scrollbar {
-  display: none;
+.marquee-track {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  will-change: transform;
+  animation: marquee 30s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+/* Skill bars animate their fill width smoothly, no bounce. */
+.skill-fill {
+  transition: width 1200ms cubic-bezier(0.16, 1, 0.3, 1);
 }

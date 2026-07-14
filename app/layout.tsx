@@ -1,12 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Syne, Inter } from "next/font/google";
-import { Providers } from "./providers";
+import { Anton, Inter } from "next/font/google";
 import "./globals.css";
 
-const syne = Syne({
+const anton = Anton({
   subsets: ["latin"],
-  variable: "--font-syne",
-  weight: ["500", "600", "700", "800"],
+  weight: "400",
+  variable: "--font-anton",
   display: "swap",
 });
 
@@ -16,14 +15,29 @@ const inter = Inter({
   display: "swap",
 });
 
+const TITLE = "Shahin Ahmed — Full-Stack Developer";
+const DESCRIPTION =
+  "Shahin Ahmed is a Full-Stack Developer based in Dhaka with 3+ years of experience building end-to-end, scalable and secure web and mobile products with React, Next.js, Node.js and Supabase.";
+
 export const metadata: Metadata = {
-  title: "Shahin Ahmed — Full-Stack Developer",
-  description:
-    "Full-Stack Developer from Bangladesh with 3+ years of experience building end-to-end, scalable, and secure web applications with React, Next.js, Node.js, and modern databases.",
+  title: TITLE,
+  description: DESCRIPTION,
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    type: "website",
+    locale: "en_US",
+    siteName: "Shahin Ahmed",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+  },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#ffffff",
+  themeColor: "#fafafa",
   colorScheme: "light",
 };
 
@@ -33,12 +47,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${syne.variable} ${inter.variable} h-full antialiased`}
+      className={`${anton.variable} ${inter.variable} antialiased`}
       style={{ colorScheme: "light" }}
     >
-      <body className="min-h-full flex flex-col bg-white text-slate-700">
-        <Providers>{children}</Providers>
-      </body>
+      <body className="bg-paper text-ink font-body">{children}</body>
     </html>
   );
 }
