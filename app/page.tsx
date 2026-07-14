@@ -139,7 +139,7 @@ const EXPERIENCE = [
   {
     period: "2023 — Present",
     role: "Full-Stack Developer",
-    company: "Belogic",
+    company: "Relogic",
     summary: "Building end-to-end products with React, Node.js and Supabase.",
   },
   {
